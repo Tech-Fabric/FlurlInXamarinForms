@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="FlurlProject.Pages.BrandPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:translate="clr-namespace:FlurlProject.Helpers">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding DeleteCommand}" Text="{x:Static translate:Strings.Delete}" />
+    </ContentPage.ToolbarItems>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*" />
+            <ColumnDefinition Width="0.6*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Text="{x:Static translate:Strings.Title}" />
+        <Entry
+            Grid.Row="0"
+            Grid.Column="1"
+            Text="{Binding Brand.Name}" />
+        <Button
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            Command="{Binding ActionCommand}"
+            Text="{x:Static translate:Strings.Add}"
+            HorizontalOptions="Center">
+            <Button.Triggers>
+                <DataTrigger
+                    Binding="{Binding IsEdit}"
+                    TargetType="Button"
+                    Value="true">
+                    <Setter Property="Text" Value="{x:Static translate:Strings.Edit}" />
+                </DataTrigger>
+            </Button.Triggers>
+        </Button>
+    </Grid>
+</ContentPage>
